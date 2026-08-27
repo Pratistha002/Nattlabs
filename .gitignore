@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.tools/
+assets-download/
+*.log
+.DS_Store
+.env
+.env.local
+backend/.gradle/
+backend/build/
+backend/bin/
