@@ -3,6 +3,58 @@ import { ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion } from 'framer-motion'
 import { SITE } from '../data/content'
 import { AmbientSpace } from './AmbientSpace'
+import { HighlightCarousel, type HighlightSlide } from './HighlightCarousel'
+
+const HERO_SLIDES: HighlightSlide[] = [
+  {
+    image: '/img/labs-banner.png',
+    kicker: 'Training Factory',
+    title: 'Hands-on labs, not only theory',
+    text: 'Practice BMS, HVAC, and role-ready work in NATTLABS labs.',
+    href: '/services',
+    cta: 'Explore labs',
+  },
+  {
+    image: '/img/career-section.jpg',
+    kicker: 'BMS pathway',
+    title: '6-month intensive · Siemens placements',
+    text: 'Role-aligned BMS training that has helped learners join Siemens.',
+    href: '/success-stories',
+    cta: 'See outcomes',
+  },
+  {
+    image: '/img/solution-banner-img.jpg',
+    kicker: 'Solutions',
+    title: 'From acquire to deploy',
+    text: 'Profile, train, assess, and deploy talent with a clear pathway.',
+    href: '/solution',
+    cta: 'View solution',
+  },
+  {
+    image: '/img/industries.jpg',
+    kicker: 'Industries',
+    title: 'IT first, expanding across verticals',
+    text: 'Programs built around real industry roles and production needs.',
+    href: '/industries',
+    cta: 'See industries',
+  },
+  {
+    image: '/img/trans-img.png',
+    kicker: 'Transformation',
+    title: 'Role-ready learning, not generic courses',
+    text: 'We map SKILL, LEVEL, and ROLE so every learner trains for the job they will actually do.',
+    href: '/transformation',
+    cta: 'Our approach',
+  },
+  {
+    image: '/img/value-banner.jpg',
+    kicker: 'Our culture',
+    title: 'Honesty, integrity, and humanity',
+    text: 'The values behind every classroom, lab, and placement at NATTLABS.',
+    href: '/values',
+    cta: 'Our values',
+  },
+]
 
 export function Hero() {
   const reduce = useReducedMotion()
@@ -24,7 +76,7 @@ export function Hero() {
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 22 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           >
@@ -33,7 +85,7 @@ export function Hero() {
 
           <motion.p
             className="hero-edu-title"
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.14, duration: 0.5 }}
           >
@@ -42,7 +94,7 @@ export function Hero() {
 
           <motion.p
             className="hero-edu-lead"
-            initial={{ opacity: 0, y: 14 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
@@ -52,7 +104,7 @@ export function Hero() {
 
           <motion.div
             className="hero-actions"
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28, duration: 0.45 }}
           >
@@ -85,32 +137,12 @@ export function Hero() {
 
         <motion.div
           className="hero-edu-media"
-          initial={{ opacity: 0, y: 24, scale: 0.98 }}
-          animate={
-            reduce
-              ? { opacity: 1, y: 0, scale: 1 }
-              : { opacity: 1, y: [0, -8, 0], scale: 1 }
-          }
-          transition={
-            reduce
-              ? { delay: 0.18, duration: 0.55 }
-              : {
-                  opacity: { delay: 0.18, duration: 0.55 },
-                  scale: { delay: 0.18, duration: 0.55 },
-                  y: { delay: 0.7, duration: 5.5, repeat: Infinity, ease: 'easeInOut' },
-                }
-          }
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.18, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="hero-media-ring" aria-hidden />
-          <img src="/img/labs-banner.png" alt="NATTLABS hands-on learning labs" />
-          <motion.div
-            className="hero-edu-badge"
-            animate={reduce ? undefined : { y: [0, 6, 0] }}
-            transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.4 }}
-          >
-            <strong>6-month</strong>
-            <span>BMS intensive · Siemens pathway</span>
-          </motion.div>
+          {!reduce && <div className="hero-media-ring" aria-hidden />}
+          <HighlightCarousel slides={HERO_SLIDES} />
         </motion.div>
       </div>
     </section>

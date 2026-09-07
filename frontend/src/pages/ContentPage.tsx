@@ -1,10 +1,21 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { fetchPage } from '../api/client'
+import { PageMeta } from '../components/PageMeta'
 import { Reveal } from '../components/Reveal'
 import type { PageContent } from '../data/content'
 
 type Props = { slug?: string }
+
+const PAGE_KICKER: Record<string, string> = {
+  transformation: 'Our approach',
+  solution: 'Solutions',
+  services: 'Programs',
+  industries: 'Sectors we serve',
+  values: 'Our culture',
+  careers: 'Join the team',
+  about: 'Who we are',
+}
 
 export function ContentPage({ slug: slugProp }: Props) {
   const params = useParams()
@@ -19,12 +30,22 @@ export function ContentPage({ slug: slugProp }: Props) {
     return <div className="loading">Loading…</div>
   }
 
+  const kicker = PAGE_KICKER[slug] ?? 'NATTLABS'
+
+  const summary = page.summary.replace(/\s+/g, ' ').slice(0, 160)
+
   return (
     <>
+      <PageMeta title={`${page.title} | NATTLABS`} description={summary} />
       <header className="page-hero">
         <div className="container">
           <Reveal>
-            <p className="eyebrow">{page.slug}</p>
+            <nav className="breadcrumb" aria-label="Breadcrumb">
+              <Link to="/">Home</Link>
+              <span aria-hidden>/</span>
+              <span>{page.title}</span>
+            </nav>
+            <p className="eyebrow">{kicker}</p>
             <h1>{page.title}</h1>
             {page.summary.split('\n\n').map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
@@ -41,6 +62,25 @@ export function ContentPage({ slug: slugProp }: Props) {
           </Reveal>
         </div>
       </header>
+
+      {slug === 'careers' && (
+        <section className="band" style={{ paddingBottom: 0 }}>
+          <div className="container">
+            <Reveal>
+              <div className="stories-cta">
+                <div>
+                  <p className="eyebrow">Apply</p>
+                  <h2 className="display">Tell us how you want to grow</h2>
+                  <p>Write to careers@nattlabs.com or send a Careers enquiry through the contact form.</p>
+                </div>
+                <Link to="/contact" className="btn btn-primary">
+                  Apply / enquire
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {slug === 'values' && (
         <section className="band" style={{ paddingBottom: 0 }}>
@@ -91,6 +131,23 @@ export function ContentPage({ slug: slugProp }: Props) {
               </Reveal>
             ),
           )}
+        </div>
+      </section>
+
+      <section className="cta-banner light">
+        <div className="container cta-banner-inner">
+          <Reveal>
+            <h2>Ready to talk with NATTLABS?</h2>
+            <p>Ask about programs, labs, placements, or careers at our Bengaluru center.</p>
+            <div className="hero-actions">
+              <Link to="/contact" className="btn btn-primary">
+                Contact us
+              </Link>
+              <Link to="/success-stories" className="btn btn-soft">
+                Success stories
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

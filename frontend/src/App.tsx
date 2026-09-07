@@ -10,6 +10,9 @@ import { HomePage } from './pages/HomePage'
 import { ContentPage } from './pages/ContentPage'
 import { SuccessStoriesPage } from './pages/SuccessStoriesPage'
 import { ContactPage } from './pages/ContactPage'
+import { FaqPage } from './pages/FaqPage'
+import { PrivacyPage } from './pages/PrivacyPage'
+import { NotFoundPage } from './pages/NotFoundPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -24,18 +27,21 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main">
+        Skip to content
+      </a>
       <CursorGlow />
       <ScrollProgress />
       <ScrollToTop />
       <Navbar />
-      <main className="main">
+      <main className="main" id="main">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}
-            initial={{ opacity: 0, y: 18, scale: 0.985 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 1.01 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
           >
             <Routes location={location}>
               <Route path="/" element={<HomePage />} />
@@ -49,7 +55,9 @@ export default function App() {
               <Route path="/success-stories" element={<SuccessStoriesPage />} />
               <Route path="/achievements" element={<Navigate to="/success-stories" replace />} />
               <Route path="/contact" element={<ContactPage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="/faq" element={<FaqPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </motion.div>
         </AnimatePresence>

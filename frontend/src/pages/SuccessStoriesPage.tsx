@@ -5,6 +5,7 @@ import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react'
 import { StoryCard } from '../components/StoryCard'
 import { StoryModal } from '../components/StoryModal'
 import { fetchTestimonials } from '../api/client'
+import { PageMeta } from '../components/PageMeta'
 import { Reveal } from '../components/Reveal'
 import { SUCCESS_INTRO, type Testimonial } from '../data/content'
 
@@ -53,9 +54,18 @@ export function SuccessStoriesPage() {
 
   return (
     <>
+      <PageMeta
+        title="Success Stories | NATTLABS"
+        description="Hear from NATTLABS learners who completed BMS and HVAC training and moved into industry roles, including Siemens placements."
+      />
       <header className="page-hero stories-hero">
         <div className="container">
           <Reveal>
+            <nav className="breadcrumb" aria-label="Breadcrumb">
+              <Link to="/">Home</Link>
+              <span aria-hidden>/</span>
+              <span>Success Stories</span>
+            </nav>
             <p className="eyebrow">Placements & voices</p>
             <h1>Success Stories</h1>
             <p className="stories-hero-lead">{SUCCESS_INTRO}</p>
@@ -75,7 +85,7 @@ export function SuccessStoriesPage() {
               <div className="stories-spot-head">
                 <div>
                   <p className="eyebrow">Featured voice</p>
-                  <h2 className="display">Meet a Nattlabs learner</h2>
+                  <h2 className="display">Meet a NATTLABS learner</h2>
                 </div>
                 <p className="stories-count">
                   <Sparkles size={16} />

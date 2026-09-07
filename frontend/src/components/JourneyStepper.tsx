@@ -4,7 +4,7 @@ import { Reveal } from './Reveal'
 
 type Step = { title: string; text: string }
 
-const STEP_COLORS = ['#0f766e', '#1e40af', '#7c3aed', '#c2410c', '#15803d']
+const STEP_COLORS = ['#7e2cb1', '#a556d4', '#641f8f', '#eeb111', '#c084fc']
 
 export function JourneyStepper({ steps }: { steps: Step[] }) {
   const [active, setActive] = useState(0)
