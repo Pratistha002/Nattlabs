@@ -8,6 +8,7 @@ const cols = [
       { to: '/transformation', label: 'Transformation' },
       { to: '/solution', label: 'Solution' },
       { to: '/services', label: 'Services' },
+      { to: '/industries', label: 'Industries' },
     ],
   },
   {
@@ -17,6 +18,7 @@ const cols = [
       { to: '/values', label: 'Values' },
       { to: '/careers', label: 'Careers' },
       { to: '/success-stories', label: 'Success Stories' },
+      { to: '/faq', label: 'FAQs' },
       { to: '/contact', label: 'Contact' },
     ],
   },
@@ -26,20 +28,11 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-grid">
-        <div>
-          <img
-            src="/img/logos/Nattlablogo-png2.png"
-            alt="NATTLABS"
-            style={{ height: 38, marginBottom: 10, filter: 'brightness(1.1)' }}
-          />
+        <div className="footer-brand">
+          <img src="/img/logos/Nattlablogo-png2.png" alt="NATTLABS" />
           <p>
-            NATTLABS builds role & production ready talent through transformative learning, labs,
+            NATTLABS builds role and production-ready talent through transformative learning, labs,
             and industry-aligned mentorship.
-          </p>
-          <p style={{ marginTop: 10 }}>
-            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-            <br />
-            <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>
           </p>
         </div>
         {cols.map((col) => (
@@ -52,9 +45,24 @@ export function Footer() {
             ))}
           </div>
         ))}
+        <div>
+          <h3>Visit us</h3>
+          <p className="footer-visit">
+            {SITE.address}
+            <br />
+            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            <br />
+            <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phone}</a>
+          </p>
+        </div>
       </div>
       <div className="container footer-bottom">
-        © {new Date().getFullYear()} NATT Labs, All Right Reserved. · {SITE.address}
+        <span>© {new Date().getFullYear()} NATT Labs. All rights reserved.</span>
+        <span className="footer-legal">
+          <Link to="/privacy">Privacy</Link>
+          <Link to="/faq">FAQs</Link>
+          <span>HSR Layout, Bengaluru</span>
+        </span>
       </div>
     </footer>
   )

@@ -21,6 +21,8 @@ import { JourneyStepper } from '../components/JourneyStepper'
 import { StoryCarousel } from '../components/StoryCarousel'
 import { AmbientSpace } from '../components/AmbientSpace'
 import { TiltCard } from '../components/TiltCard'
+import { FaqList } from '../components/FaqList'
+import { PageMeta } from '../components/PageMeta'
 import { LATEST_WORK, SUCCESS_INTRO, type Testimonial } from '../data/content'
 
 const STATS = [
@@ -103,6 +105,10 @@ export function HomePage() {
 
   return (
     <>
+      <PageMeta
+        title="NATTLABS — Role & Production Ready Talent"
+        description="NATTLABS in Bengaluru builds role-ready talent through hands-on labs, BMS training, mentorship, and Siemens placement pathways."
+      />
       <Hero />
 
       <section className="stats-bar">
@@ -198,7 +204,7 @@ export function HomePage() {
           <Reveal>
             <p className="eyebrow">The Training Factory</p>
             <h2 className="display">Where learning meets real execution</h2>
-            <p className="lead">{LATEST_WORK.body.slice(0, 260)}…</p>
+            <p className="lead">{LATEST_WORK.body.slice(0, 240)}…</p>
             <div className="factory-highlight">
               <div>
                 <strong>
@@ -280,7 +286,10 @@ export function HomePage() {
                 Our specialized BMS training has helped students prepare for and secure roles with
                 Siemens, a global leader in Building Management Systems.
               </p>
-              <div className="partner-logo">SIEMENS</div>
+              <div className="partner-logo">
+                <span className="partner-logo-mark">Siemens</span>
+                <span className="partner-logo-caption">Building Management Systems</span>
+              </div>
               <div className="partner-chips">
                 <span>BMS</span>
                 <span>HVAC</span>
@@ -291,6 +300,24 @@ export function HomePage() {
               </Link>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="band">
+        <div className="container">
+          <Reveal>
+            <div className="section-intro row">
+              <div>
+                <p className="eyebrow">FAQs</p>
+                <h2 className="display">Common questions</h2>
+                <p className="lead">Programs, labs, placements, and how to reach the HSR Layout center.</p>
+              </div>
+              <Link to="/faq" className="text-link">
+                All FAQs <ArrowUpRight size={15} />
+              </Link>
+            </div>
+          </Reveal>
+          <FaqList limit={5} />
         </div>
       </section>
 

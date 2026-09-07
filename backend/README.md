@@ -42,7 +42,7 @@ cd backend
 .\gradlew.bat bootRun
 ```
 
-If mail is not configured, the form still saves to MongoDB but no email is sent (useful for local dev without SMTP).
+If mail is not configured, the API returns an error instead of pretending the message was emailed.
 
 ## Run locally
 

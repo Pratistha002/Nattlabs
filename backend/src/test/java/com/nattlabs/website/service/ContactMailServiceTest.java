@@ -8,7 +8,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class ContactMailServiceTest {
 
@@ -16,7 +16,7 @@ class ContactMailServiceTest {
 
     @BeforeEach
     void setUp() {
-        service = new ContactMailService(null);
+        service = new ContactMailService(null, new com.fasterxml.jackson.databind.ObjectMapper());
         ReflectionTestUtils.setField(service, "mailFrom", "");
         ReflectionTestUtils.setField(service, "mailTo", "support@nattlabs.com");
     }
@@ -27,7 +27,7 @@ class ContactMailServiceTest {
     }
 
     @Test
-    void sendContactNotificationSkipsWhenNotConfigured() {
+    void sendContactNotificationReturnsErrorWhenNotConfigured() {
         ContactMessage message = ContactMessage.builder()
                 .name("Test User")
                 .email("user@example.com")
@@ -36,6 +36,6 @@ class ContactMailServiceTest {
                 .createdAt(Instant.now())
                 .build();
 
-        assertNull(service.sendContactNotification(message));
+        assertNotNull(service.sendContactNotification(message));
     }
 }

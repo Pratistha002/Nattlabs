@@ -37,7 +37,7 @@ public class ContactController {
         ContactMessage saved = contactMessageRepository.save(message);
 
         String mailError = contactMailService.sendContactNotification(saved);
-        if (mailError != null && contactMailService.isConfigured()) {
+        if (mailError != null) {
             return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(Map.of(
                     "error", mailError
             ));
