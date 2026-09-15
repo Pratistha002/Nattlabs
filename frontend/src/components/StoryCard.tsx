@@ -26,7 +26,7 @@ export function StoryCard({ name, quote, imageUrl, tag, index, onOpen }: Props) 
       whileTap={{ scale: 0.985 }}
     >
       <div className="story-portrait-media">
-        <img src={imageUrl} alt="" loading="lazy" />
+        <img src={encodeURI(imageUrl)} alt="" loading="lazy" />
       </div>
       <div className="meta">
         <span className="story-tag">{tag}</span>

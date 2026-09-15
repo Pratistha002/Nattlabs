@@ -140,7 +140,7 @@ export const FALLBACK_TESTIMONIALS: Testimonial[] = [
     name: 'Tadavarthi Hiranya Lakshmi Sri Likitha',
     quote:
       'With structured training and real-world exposure at Nattlabs, I gained clarity, technical confidence, and communication skills that have prepared me for a meaningful career.',
-    imageUrl: '/img/Thadavarthi Hiranya Lakshmi Sri Likhita.jpg',
+    imageUrl: '/img/stories-thadavarthi.jpg',
     rating: 5,
     order: 6,
   },
@@ -164,7 +164,7 @@ export const FALLBACK_TESTIMONIALS: Testimonial[] = [
     name: 'Ifath Fathima',
     quote:
       'At Nattlabs, I found my confidence and technical voice. With great mentorship and real learning, I now feel equipped to grow in a professional environment.',
-    imageUrl: '/img/Ifath.jpg',
+    imageUrl: '/img/stories-ifath.jpg',
     rating: 5,
     order: 9,
   },
@@ -172,7 +172,7 @@ export const FALLBACK_TESTIMONIALS: Testimonial[] = [
     name: 'Layavva H Goudannavar',
     quote:
       'Nattlabs helped me grow through hands-on experience and expert guidance. I now step forward with real skills, industry knowledge, and renewed confidence in my path.',
-    imageUrl: '/img/Layavva.jpg',
+    imageUrl: '/img/stories-layavva.jpg',
     rating: 5,
     order: 10,
   },

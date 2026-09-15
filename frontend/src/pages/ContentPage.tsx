@@ -1,9 +1,32 @@
 import { useEffect, useState } from 'react'
+import { HeartHandshake, Scale, ShieldCheck } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchPage } from '../api/client'
 import { PageMeta } from '../components/PageMeta'
 import { Reveal } from '../components/Reveal'
+import { TiltCard } from '../components/TiltCard'
 import type { PageContent } from '../data/content'
+
+const VALUE_CARDS = [
+  {
+    t: 'Honesty',
+    d: 'Transparency and reliability in every interaction.',
+    icon: ShieldCheck,
+    tone: 'honesty',
+  },
+  {
+    t: 'Integrity',
+    d: 'Fairness and accountability in every decision.',
+    icon: Scale,
+    tone: 'integrity',
+  },
+  {
+    t: 'Humanity',
+    d: 'Diversity, collaboration, and people who feel valued.',
+    icon: HeartHandshake,
+    tone: 'humanity',
+  },
+] as const
 
 type Props = { slug?: string }
 
@@ -86,16 +109,17 @@ export function ContentPage({ slug: slugProp }: Props) {
         <section className="band" style={{ paddingBottom: 0 }}>
           <div className="container">
             <div className="values-row">
-              {[
-                { t: 'Honesty', d: 'Transparency and reliability in every interaction.' },
-                { t: 'Integrity', d: 'Fairness and accountability in every decision.' },
-                { t: 'Humanity', d: 'Diversity, collaboration, and people who feel valued.' },
-              ].map((v, i) => (
-                <Reveal key={v.t} delay={i * 0.08}>
-                  <div className="value-panel">
-                    <strong>{v.t}</strong>
-                    <span>{v.d}</span>
-                  </div>
+              {VALUE_CARDS.map((v, i) => (
+                <Reveal key={v.t} delay={i * 0.08} className="value-reveal">
+                  <TiltCard>
+                    <article className={`value-panel ${v.tone}`}>
+                      <span className="value-icon" aria-hidden>
+                        <v.icon size={22} />
+                      </span>
+                      <strong>{v.t}</strong>
+                      <span className="value-copy">{v.d}</span>
+                    </article>
+                  </TiltCard>
                 </Reveal>
               ))}
             </div>

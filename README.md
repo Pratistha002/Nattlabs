@@ -10,6 +10,17 @@ Nattlabs/
   backend/    # Spring Boot 3.2 + MongoDB (port 8080)
 ```
 
+## Docker
+
+`docker-compose.yml` runs MongoDB, the Spring Boot API, and the React site.
+
+```bash
+cd Nattlabs
+docker compose up -d --build
+```
+
+Then open **http://localhost:5173**. API calls go through nginx to the backend on port 8090.
+
 ## Frontend
 
 ```bash

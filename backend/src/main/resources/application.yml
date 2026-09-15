@@ -13,7 +13,7 @@ spring:
 
 app:
   cors:
-    allowed-origins: http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:5174,http://127.0.0.1:5173,http://127.0.0.1:5174,http://localhost:8090}
   mail:
     from: ${APP_MAIL_FROM:}
     to: ${APP_CONTACT_TO:support@nattlabs.com,careers@nattlabs.com}

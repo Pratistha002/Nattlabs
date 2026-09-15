@@ -56,7 +56,7 @@ export function StoryModal({ stories, index, onClose, onChange, tagFor }: Props)
             </button>
 
             <div className="story-modal-media">
-              <img src={story.imageUrl} alt={story.name} />
+              <img src={encodeURI(story.imageUrl)} alt={story.name} />
             </div>
 
             <div className="story-modal-body">

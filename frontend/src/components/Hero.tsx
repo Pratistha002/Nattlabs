@@ -42,7 +42,7 @@ const HERO_SLIDES: HighlightSlide[] = [
     image: '/img/trans-img.png',
     kicker: 'Transformation',
     title: 'Role-ready learning, not generic courses',
-    text: 'We map SKILL, LEVEL, and ROLE so every learner trains for the job they will actually do.',
+    text: 'We map SKILL, LEVEL, and ROLE so learners train for the job they will do.',
     href: '/transformation',
     cta: 'Our approach',
   },
