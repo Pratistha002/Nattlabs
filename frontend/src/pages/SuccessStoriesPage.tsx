@@ -114,7 +114,7 @@ export function SuccessStoriesPage() {
                     onClick={() => setModalIndex(featured)}
                     aria-label={`Read ${active.name}'s full story`}
                   >
-                    <img src={active.imageUrl} alt={active.name} />
+                    <img src={encodeURI(active.imageUrl)} alt={active.name} />
                     <span className="stories-spotlight-hint">View story</span>
                   </button>
                   <div className="stories-spotlight-copy">

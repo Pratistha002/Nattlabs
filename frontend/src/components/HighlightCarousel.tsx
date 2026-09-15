@@ -62,11 +62,13 @@ export function HighlightCarousel({ slides, intervalMs = 5200 }: Props) {
           <img src={slide.image} alt="" />
           <div className="hl-copy">
             <p className="hl-kicker">{slide.kicker}</p>
-            <h3>{slide.title}</h3>
-            <p>{slide.text}</p>
-            <Link to={slide.href} className="hl-link">
-              {slide.cta} <ArrowRight size={16} />
-            </Link>
+            <div className="hl-copy-row">
+              <h3>{slide.title}</h3>
+              <Link to={slide.href} className="hl-link">
+                {slide.cta} <ArrowRight size={16} />
+              </Link>
+            </div>
+            <p className="hl-text">{slide.text}</p>
           </div>
         </motion.article>
       </AnimatePresence>

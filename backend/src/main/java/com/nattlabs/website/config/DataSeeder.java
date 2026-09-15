@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -27,12 +28,8 @@ public class DataSeeder implements CommandLineRunner {
     }
 
     private void seedTestimonials() {
-        if (testimonialRepository.count() > 0) {
-            log.info("Testimonials already seeded, skipping.");
-            return;
-        }
-
-        List<Testimonial> testimonials = List.of(
+        if (testimonialRepository.count() == 0) {
+            List<Testimonial> testimonials = List.of(
                 testimonial("Bekkam Gayathri Rani Bai",
                         "Nattlabs shaped my confidence through expert mentorship and hands-on HVAC training. I now feel fully prepared to face real industry challenges with clarity and purpose.",
                         "/img/Bekkam Gayathri Rani Bai.jpg", 1),
@@ -50,7 +47,7 @@ public class DataSeeder implements CommandLineRunner {
                         "/img/Kruthika R.jpg", 5),
                 testimonial("Tadavarthi Hiranya Lakshmi Sri Likitha",
                         "With structured training and real-world exposure at Nattlabs, I gained clarity, technical confidence, and communication skills that have prepared me for a meaningful career.",
-                        "/img/Tadavarthi Hiranya Lakshmi Sri Likitha.jpg", 6),
+                        "/img/stories-thadavarthi.jpg", 6),
                 testimonial("Yashashwini S L",
                         "My journey at Nattlabs gave me direction, technical growth, and personal confidence. I now feel empowered to succeed in the evolving world of BMS and HVAC.",
                         "/img/Yashashwini S L.jpg", 7),
@@ -59,14 +56,44 @@ public class DataSeeder implements CommandLineRunner {
                         "/img/Harshita.jpg", 8),
                 testimonial("Ifath Fathima",
                         "At Nattlabs, I found my confidence and technical voice. With great mentorship and real learning, I now feel equipped to grow in a professional environment.",
-                        "/img/Ifath Fathima.jpg", 9),
+                        "/img/stories-ifath.jpg", 9),
                 testimonial("Layavva H Goudannavar",
                         "Nattlabs helped me grow through hands-on experience and expert guidance. I now step forward with real skills, industry knowledge, and renewed confidence in my path.",
-                        "/img/Layavva H Goudannavar.jpg", 10)
+                        "/img/stories-layavva.jpg", 10)
+            );
+
+            testimonialRepository.saveAll(testimonials);
+            log.info("Seeded {} testimonials.", testimonials.size());
+        } else {
+            log.info("Testimonials already seeded, skipping insert.");
+        }
+
+        repairTestimonialImageUrls();
+    }
+
+    /**
+     * Photo filenames on disk do not always match the person's display name.
+     * Correct stale Mongo URLs so the frontend does not 404 after the first seed.
+     */
+    private void repairTestimonialImageUrls() {
+        Map<String, String> photosByName = Map.of(
+                "Tadavarthi Hiranya Lakshmi Sri Likitha", "/img/stories-thadavarthi.jpg",
+                "Ifath Fathima", "/img/stories-ifath.jpg",
+                "Layavva H Goudannavar", "/img/stories-layavva.jpg"
         );
 
-        testimonialRepository.saveAll(testimonials);
-        log.info("Seeded {} testimonials.", testimonials.size());
+        int updated = 0;
+        for (Testimonial testimonial : testimonialRepository.findAll()) {
+            String corrected = photosByName.get(testimonial.getName());
+            if (corrected != null && !corrected.equals(testimonial.getImageUrl())) {
+                testimonial.setImageUrl(corrected);
+                testimonialRepository.save(testimonial);
+                updated++;
+            }
+        }
+        if (updated > 0) {
+            log.info("Corrected {} testimonial image URL(s).", updated);
+        }
     }
 
     private Testimonial testimonial(String name, String quote, String imageUrl, int order) {

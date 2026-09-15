@@ -28,7 +28,7 @@ export function StoryCarousel({ stories }: { stories: Testimonial[] }) {
           exit={{ opacity: 0, x: -18 }}
           transition={{ duration: 0.35 }}
         >
-          <img src={story.imageUrl} alt={story.name} />
+          <img src={encodeURI(story.imageUrl)} alt={story.name} />
           <div>
             <div className="stars">★★★★★</div>
             <p>“{story.quote}”</p>
